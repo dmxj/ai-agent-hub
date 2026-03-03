@@ -1,0 +1,14 @@
+{
+  "build": {
+    "command": "echo No build needed",
+    "publish": ".",
+    "functions": "."
+  },
+  "redirects": [
+    {
+      "from": "/*",
+      "to": "/index.html",
+      "status": 200
+    }
+  ]
+}

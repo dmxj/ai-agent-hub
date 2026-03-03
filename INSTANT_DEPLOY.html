@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Agent-Hub 一键部署</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, sans-serif; }
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 20px; text-align: center; }
+        .status { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .status.error { background: #ffebee; border-color: #ef9a9a; }
+        .step { margin: 30px 0; padding: 20px; border-left: 4px solid #667eea; background: #f8f9fa; }
+        .code { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 10px 0; font-family: monospace; }
+        .btn { display: inline-block; background: #667eea; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; margin: 10px 5px; }
+        .btn:hover { background: #5a67d8; }
+        .test-box { background: #fff3cd; border: 1px solid #ffeaa7; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 AI-Agent-Hub 一键部署控制台</h1>
+        
+        <div class="status">
+            <strong>🕒 当前时间：</strong> 2026年3月3日 19:40<br>
+            <strong>🎯 目标：</strong> 20:00前网站上线并开始推广<br>
+            <strong>💰 支付系统：</strong> ✅ 已集成支付宝/微信支付
+        </div>
+        
+        <div class="step">
+            <h2>📦 项目文件准备完成</h2>
+            <p>所有必要文件已就绪：</p>
+            <div class="code">
+index.html                 # 主网站（支付已集成）
+collect_emails.py          # 邮箱收集后端
+vercel.json               # Vercel部署配置
+requirements.txt          # Python依赖
+DEPLOY_GUIDE.md           # 部署指南
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>🔗 支付系统验证</h2>
+            <div class="test-box">
+                <p><strong>支付宝收款码：</strong> <a href="http://miaobi-lite.cdn.bcebos.com/ojbk/fly/alipay.jpeg" target="_blank">点击测试</a></p>
+                <p><strong>微信支付收款码：</strong> <a href="http://miaobi-lite.cdn.bcebos.com/ojbk/fly/wepay.jpeg" target="_blank">点击测试</a></p>
+                <p>请确认这两个链接能正常显示你的收款二维码</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>🚀 立即部署选项</h2>
+            <p>选择一种方式立即上线：</p>
+            
+            <div style="margin: 20px 0;">
+                <a href="#deploy-vercel" class="btn">选项1：Vercel部署（推荐）</a>
+                <a href="#deploy-github" class="btn" style="background: #28a745;">选项2：GitHub Pages</a>
+                <a href="#deploy-netlify" class="btn" style="background: #17a2b8;">选项3：Netlify</a>
+            </div>
+            
+            <div id="deploy-vercel" style="margin-top: 20px;">
+                <h3>Vercel一键部署：</h3>
+                <div class="code">
+1. 访问：<a href="https://vercel.com/new" target="_blank">https://vercel.com/new</a>
+2. 点击"Import Git Repository"
+3. 使用此GitHub仓库：dmxj/ai-agent-hub
+4. 一键部署，无需配置
+5. 网站地址：https://ai-agent-hub.vercel.app
+                </div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>📧 邮箱收集系统</h2>
+            <p>邮箱收集后端已准备，启动命令：</p>
+            <div class="code">
+# 启动邮箱收集服务器
+python3 collect_emails.py
+
+# 访问管理界面
+http://localhost:8080
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>🎯 推广倒计时</h2>
+            <div class="test-box">
+                <p><strong>剩余时间：</strong> 20分钟（到20:00）</p>
+                <p><strong>第一波推广平台：</strong> Reddit技术社区</p>
+                <p><strong>推广内容：</strong> 已准备就绪</p>
+                <p><strong>成功指标：</strong> 24小时内获得第一个邮箱意向</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <h2>📞 紧急联系方式</h2>
+            <p>如遇问题，按以下步骤排查：</p>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>确认支付宝/微信收款码链接有效</li>
+                <li>选择一种部署方式立即上线</li>
+                <li>测试支付流程（点击支付按钮）</li>
+                <li>20:00开始推广测试</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p><strong>部署状态：</strong> ✅ 文件准备完成 | 🚀 等待部署 | 💰 支付系统就绪</p>
+            <p>最后更新：2026年3月3日 19:45</p>
+        </div>
+    </div>
+    
+    <script>
+        // 简单的部署倒计时
+        const targetTime = new Date('2026-03-03T20:00:00+08:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetTime - now;
+            
+            if (diff > 0) {
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                const countdownElement = document.querySelector('.test-box p:first-child');
+                if (countdownElement) {
+                    countdownElement.innerHTML = `<strong>剩余时间：</strong> ${minutes}分${seconds}秒（到20:00）`;
+                }
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
