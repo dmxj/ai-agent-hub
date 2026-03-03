@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Agent-Hub | AI代理托管与上下文管理服务</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 30px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            padding: 25px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: transform 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .pricing {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 30px;
+            margin: 40px 0;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .plan {
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        
+        .plan.popular {
+            border-color: #667eea;
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .plan-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .plan-button:hover {
+            background: #5a67d8;
+        }
+        
+        .demo {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .demo-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            opacity: 0.8;
+        }
+        
+        .status {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI-Agent-Hub</h1>
+            <p class="subtitle">基于OpenViking和agentstack的开源AI代理托管平台</p>
+            <p class="subtitle">为AI Agent开发者提供专业的上下文管理和一键部署服务</p>
+            
+            <div class="status">
+                <strong>🚀 项目状态：测试运行中</strong>
+                <p>目前正在验证市场需求，收款系统配置中</p>
+            </div>
+            
+            <a href="#demo" class="cta-button">免费试用演示</a>
+            <a href="#pricing" class="cta-button" style="background: #4CAF50; color: white;">查看定价</a>
+        </header>
+        
+        <section class="features" id="features">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #333;">核心功能</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 40px;">
+                基于最受欢迎的开源项目构建，为AI Agent开发提供完整解决方案
+            </p>
+            
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>🔗 智能上下文管理</h3>
+                    <p>基于OpenViking开源项目，提供专业的AI Agent上下文存储、检索和管理服务，支持多轮对话记忆。</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>⚡ 一键部署服务</h3>
+                    <p>基于agentstack开源项目，支持AI Agent的快速部署、版本管理和自动扩展，降低运维复杂度。</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>📊 实时监控仪表板</h3>
+                    <p>完整的性能监控和使用统计，包括API调用次数、响应时间、错误率等关键指标。</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>🔒 企业级安全性</h3>
+                    <p>数据加密传输、API密钥管理、访问控制列表，确保您的AI Agent安全稳定运行。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="pricing" id="pricing">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #333;">简单透明的定价</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 40px;">
+                按需付费，无需长期合约，7天无理由退款保证
+            </p>
+            
+            <div class="pricing-grid">
+                <div class="plan">
+                    <h3>免费体验</h3>
+                    <div class="price">$0<span>/月</span></div>
+                    <ul style="list-style: none; text-align: left; margin: 20px 0;">
+                        <li>✓ 每月1万次API调用</li>
+                        <li>✓ 1个Agent部署</li>
+                        <li>✓ 基础监控功能</li>
+                        <li>✓ 社区支持</li>
+                    </ul>
+                    <button class="plan-button" onclick="startFreeTrial()">开始免费体验</button>
+                </div>
+                
+                <div class="plan popular">
+                    <div class="popular-badge">最受欢迎</div>
+                    <h3>专业版</h3>
+                    <div class="price">$49.99<span>/月</span></div>
+                    <ul style="list-style: none; text-align: left; margin: 20px 0;">
+                        <li>✓ 每月100万次API调用</li>
+                        <li>✓ 20个Agent部署</li>
+                        <li>✓ 高级监控和报警</li>
+                        <li>✓ 优先技术支持</li>
+                        <li>✓ 自定义上下文模型</li>
+                    </ul>
+                    <button class="plan-button" onclick="showPayment('pro')">选择专业版 - $49.99/月</button>
+                </div>
+                
+                <div class="plan">
+                    <h3>企业版</h3>
+                    <div class="price">$199.99<span>/月</span></div>
+                    <ul style="list-style: none; text-align: left; margin: 20px 0;">
+                        <li>✓ 无限制API调用</li>
+                        <li>✓ 50个Agent部署</li>
+                        <li>✓ 专属客户经理</li>
+                        <li>✓ SLA 99.9%保障</li>
+                        <li>✓ 私有化部署选项</li>
+                    </ul>
+                    <button class="plan-button" onclick="showPayment('enterprise')">联系企业定制 - $199.99/月</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="demo" id="demo">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: #333;">立即体验</h2>
+            <p style="color: #666; max-width: 800px; margin: 0 auto 20px;">
+                无需注册，直接在下方试用我们的API演示
+            </p>
+            
+            <div class="demo-box">
+                <h3 style="margin-bottom: 20px; color: #333;">API演示</h3>
+                <div style="background: white; border-radius: 10px; padding: 20px; border: 1px solid #e9ecef;">
+                    <pre style="background: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto;">
+# Python调用示例
+import requests
+
+api_key = "demo_key_2026"
+url = "https://api.ai-agent-hub.demo/context/query"
+
+payload = {
+    "agent_id": "demo_agent",
+    "query": "最近的对话历史",
+    "limit": 10
+}
+
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.json())
+                    </pre>
+                </div>
+                <button style="margin-top: 20px; padding: 12px 30px; background: #667eea; color: white; border: none; border-radius: 25px; cursor: pointer;" onclick="runDemo()">
+                    运行演示代码
+                </button>
+                <div id="demo-result" style="margin-top: 20px; display: none; background: #e8f5e9; padding: 15px; border-radius: 10px;">
+                    <strong>演示结果：</strong>
+                    <pre id="result-content">等待执行...</pre>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; padding: 20px; background: #fff3cd; border-radius: 10px; border: 1px solid #ffeaa7;">
+                <h4 style="color: #856404;">💡 当前状态说明</h4>
+                <p style="color: #856404; margin-top: 10px;">
+                    本项目基于GitHub热门开源项目OpenViking和agentstack构建，目前处于市场验证阶段。
+                    如果您对此服务感兴趣，请留下您的邮箱，我们将在收款系统配置完成后第一时间通知您。
+                </p>
+                <div style="margin-top: 20px;">
+                    <input type="email" id="email-input" placeholder="输入您的邮箱地址" style="padding: 12px 20px; border: 1px solid #ccc; border-radius: 5px; width: 300px; max-width: 100%;">
+                    <button onclick="collectEmail()" style="padding: 12px 25px; background: #28a745; color: white; border: none; border-radius: 5px; margin-left: 10px; cursor: pointer;">提交意向</button>
+                </div>
+                <div id="email-result" style="margin-top: 10px;"></div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>基于开源项目：<a href="https://github.com/OpenViking" style="color: white; text-decoration: underline;">OpenViking</a> 和 <a href="https://github.com/agentstack" style="color: white; text-decoration: underline;">agentstack</a></p>
+            <p style="margin-top: 20px;">© 2026 AI-Agent-Hub. 本项目为市场验证测试，非正式商业产品。</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">最后更新：2026年3月3日 18:30</p>
+        </footer>
+    </div>
+    
+    <script>
+        function showPayment(plan) {
+            const planName = plan === 'pro' ? '专业版（$49.99/月）' : '企业版（$199.99/月）';
+            const paymentHtml = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000;">
+                    <div style="background: white; border-radius: 15px; padding: 30px; max-width: 500px; width: 90%;">
+                        <h3 style="color: #333; margin-bottom: 20px;">支付 ${planName}</h3>
+                        <p style="margin-bottom: 20px; color: #666;">请选择支付方式完成付款：</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <button onclick="payWithAlipay('${plan}')" style="padding: 15px; background: #009fe8; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                                💰 支付宝支付
+                            </button>
+                            
+                            <button onclick="payWithWechat('${plan}')" style="padding: 15px; background: #07c160; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                                💳 微信支付
+                            </button>
+                            
+                            <button onclick="closePayment()" style="padding: 15px; background: #6c757d; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                                取消
+                            </button>
+                        </div>
+                        
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+                            💡 付款后请将截图发送至：ai-agent-hub@test.com（测试邮箱）
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            const paymentDiv = document.createElement('div');
+            paymentDiv.innerHTML = paymentHtml;
+            paymentDiv.id = 'payment-modal';
+            document.body.appendChild(paymentDiv);
+        }
+        
+        function payWithAlipay(plan) {
+            const amount = plan === 'pro' ? '49.99' : '199.99';
+            const paymentWindow = window.open('', '_blank');
+            paymentWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head><title>支付宝支付</title></head>
+                <body style="text-align: center; padding: 50px;">
+                    <h2>支付宝支付 - $${amount}/月</h2>
+                    <p>请扫描下方二维码完成支付：</p>
+                    <img src="http://miaobi-lite.cdn.bcebos.com/ojbk/fly/alipay.jpeg" alt="支付宝收款码" style="max-width: 300px; border: 1px solid #ddd; padding: 10px;">
+                    <p style="margin-top: 20px;">
+                        <strong>支付金额：</strong> $${amount}<br>
+                        <strong>备注：</strong> AI-Agent-Hub ${plan === 'pro' ? '专业版' : '企业版'}
+                    </p>
+                    <p style="color: #666; margin-top: 20px;">
+                        支付完成后，请截图并发送至：ai-agent-hub@test.com<br>
+                        我们将在24小时内为您开通服务。
+                    </p>
+                    <button onclick="window.close()" style="padding: 10px 20px; margin-top: 20px; background: #009fe8; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        我已支付
+                    </button>
+                </body>
+                </html>
+            `);
+            closePayment();
+        }
+        
+        function payWithWechat(plan) {
+            const amount = plan === 'pro' ? '49.99' : '199.99';
+            const paymentWindow = window.open('', '_blank');
+            paymentWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head><title>微信支付</title></head>
+                <body style="text-align: center; padding: 50px;">
+                    <h2>微信支付 - $${amount}/月</h2>
+                    <p>请扫描下方二维码完成支付：</p>
+                    <img src="http://miaobi-lite.cdn.bcebos.com/ojbk/fly/wepay.jpeg" alt="微信支付收款码" style="max-width: 300px; border: 1px solid #ddd; padding: 10px;">
+                    <p style="margin-top: 20px;">
+                        <strong>支付金额：</strong> $${amount}<br>
+                        <strong>备注：</strong> AI-Agent-Hub ${plan === 'pro' ? '专业版' : '企业版'}
+                    </p>
+                    <p style="color: #666; margin-top: 20px;">
+                        支付完成后，请截图并发送至：ai-agent-hub@test.com<br>
+                        我们将在24小时内为您开通服务。
+                    </p>
+                    <button onclick="window.close()" style="padding: 10px 20px; margin-top: 20px; background: #07c160; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        我已支付
+                    </button>
+                </body>
+                </html>
+            `);
+            closePayment();
+        }
+        
+        function closePayment() {
+            const modal = document.getElementById('payment-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        function startFreeTrial() {
+            alert('免费体验版无需支付！请提交邮箱意向，我们将为您开通测试账户。');
+            document.getElementById('email-input').focus();
+        }
+        
+        function runDemo() {
+            const resultDiv = document.getElementById('demo-result');
+            const resultContent = document.getElementById('result-content');
+            
+            resultDiv.style.display = 'block';
+            resultContent.textContent = '正在执行演示...';
+            
+            // 模拟API调用
+            setTimeout(() => {
+                resultContent.textContent = JSON.stringify({
+                    "status": "success",
+                    "data": {
+                        "contexts": [
+                            {"id": "ctx_001", "content": "用户询问天气情况", "timestamp": "2026-03-03T10:00:00Z"},
+                            {"id": "ctx_002", "content": "用户需要推荐餐厅", "timestamp": "2026-03-03T11:30:00Z"},
+                            {"id": "ctx_003", "content": "用户询问股票信息", "timestamp": "2026-03-03T13:45:00Z"}
+                        ],
+                        "total": 3,
+                        "agent_id": "demo_agent"
+                    },
+                    "message": "演示成功！在实际环境中，这将返回真实的上下文数据。"
+                }, null, 2);
+            }, 1000);
+        }
+        
+        function collectEmail() {
+            const emailInput = document.getElementById('email-input');
+            const emailResult = document.getElementById('email-result');
+            const email = emailInput.value.trim();
+            
+            if (!email || !email.includes('@')) {
+                emailResult.innerHTML = '<span style="color: #dc3545;">请输入有效的邮箱地址</span>';
+                return;
+            }
+            
+            // 这里实际应该发送到后端，这里只做前端演示
+            emailResult.innerHTML = '<span style="color: #28a745;">感谢提交！您的邮箱已记录（演示模式）。收款系统配置完成后我们会通知您。</span>';
+            emailInput.value = '';
+            
+            // 记录到控制台（实际项目中应该发到服务器）
+            console.log('意向邮箱收集：', email);
+        }
+        
+        // 访问计数器
+        window.addEventListener('load', () => {
+            console.log('AI-Agent-Hub 网站访问时间：', new Date().toLocaleString());
+            console.log('用户代理：', navigator.userAgent);
+        });
+    </script>
+</body>
+</html>
