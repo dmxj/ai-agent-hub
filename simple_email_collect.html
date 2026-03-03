@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Agent-Hub 意向收集</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        .btn {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #4338ca;
+        }
+        .success {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .error {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .features {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .features h3 {
+            margin-top: 0;
+            color: #0369a1;
+        }
+        .features ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .features li {
+            margin-bottom: 8px;
+            color: #475569;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 AI-Agent-Hub 意向登记</h1>
+        <p>基于 OpenViking 和 agentstack 开源项目的 AI 代理托管平台，正在寻找早期用户。</p>
+        
+        <div class="features">
+            <h3>主要功能：</h3>
+            <ul>
+                <li>✅ 智能上下文管理（多轮对话记忆）</li>
+                <li>✅ 一键部署 AI 代理</li>
+                <li>✅ 实时性能监控仪表板</li>
+                <li>✅ 企业级安全（数据加密、API密钥管理）</li>
+                <li>✅ 支持支付宝/微信支付</li>
+            </ul>
+        </div>
+        
+        <form id="interest-form">
+            <div class="input-group">
+                <label for="name">姓名/昵称</label>
+                <input type="text" id="name" placeholder="如何称呼您？">
+            </div>
+            
+            <div class="input-group">
+                <label for="email">邮箱地址 *</label>
+                <input type="email" id="email" placeholder="您的联系邮箱" required>
+                <div id="email-error" class="error">请输入有效的邮箱地址</div>
+            </div>
+            
+            <div class="input-group">
+                <label>您最感兴趣的功能是？（可多选）</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="features" value="context"> 智能上下文管理</label>
+                    <label><input type="checkbox" name="features" value="deploy"> 一键部署</label>
+                    <label><input type="checkbox" name="features" value="monitor"> 实时监控</label>
+                    <label><input type="checkbox" name="features" value="security"> 企业级安全</label>
+                    <label><input type="checkbox" name="features" value="scale"> 自动扩缩容</label>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="budget">您的预算范围</label>
+                <select id="budget">
+                    <option value="">请选择</option>
+                    <option value="free">免费版即可</option>
+                    <option value="50">50元/月以内</option>
+                    <option value="100">100-300元/月</option>
+                    <option value="300">300-500元/月</option>
+                    <option value="500">500元/月以上</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label for="use-case">您的使用场景/需求</label>
+                <textarea id="use-case" placeholder="请简要描述您计划如何使用AI-Agent-Hub"></textarea>
+            </div>
+            
+            <button type="submit" class="btn">提交意向</button>
+        </form>
+        
+        <div id="success-message" class="success">
+            <h3>✅ 感谢提交！</h3>
+            <p>我们已收到您的意向，将在24小时内通过邮件与您联系。</p>
+            <p>同时，您可以访问：<a href="https://ai-agent-hub-rsk.vercel.app/" style="color: white; text-decoration: underline;">AI-Agent-Hub网站</a> 查看更多信息。</p>
+        </div>
+        
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 14px;">
+            <p><strong>隐私说明：</strong>您的信息仅用于产品改进和通知，不会用于其他用途。</p>
+            <p><strong>联系方式：</strong>如有问题，请发送邮件至 ai-agent-hub@test.com</p>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('interest-form');
+        const successMessage = document.getElementById('success-message');
+        const emailError = document.getElementById('email-error');
+        
+        // 表单提交处理
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            
+            // 简单邮箱验证
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                emailError.style.display = 'block';
+                return;
+            }
+            
+            emailError.style.display = 'none';
+            
+            // 收集数据
+            const formData = {
+                name: document.getElementById('name').value || '未提供',
+                email: email,
+                features: Array.from(document.querySelectorAll('input[name="features"]:checked'))
+                    .map(cb => cb.value),
+                budget: document.getElementById('budget').value || '未选择',
+                useCase: document.getElementById('use-case').value || '未提供',
+                timestamp: new Date().toLocaleString('zh-CN'),
+                ip: '待记录',
+                userAgent: navigator.userAgent
+            };
+            
+            // 输出到控制台（实际应发送到服务器）
+            console.log('意向提交:', JSON.stringify(formData, null, 2));
+            
+            // 显示成功消息
+            successMessage.style.display = 'block';
+            form.style.display = 'none';
+            
+            // 模拟发送到服务器（实际应使用fetch）
+            const logUrl = `https://webhook.site/your-webhook?data=${encodeURIComponent(JSON.stringify(formData))}`;
+            console.log('模拟发送到:', logUrl);
+            
+            // 记录到localStorage（作为备份）
+            try {
+                const existing = JSON.parse(localStorage.getItem('ai_agent_hub_leads') || '[]');
+                existing.push(formData);
+                localStorage.setItem('ai_agent_hub_leads', JSON.stringify(existing));
+                console.log('已保存到localStorage，总数:', existing.length);
+            } catch (err) {
+                console.warn('localStorage保存失败:', err);
+            }
+        });
+        
+        // 页面加载时记录
+        console.log('AI-Agent-Hub意向收集页面加载时间:', new Date().toLocaleString('zh-CN'));
+        console.log('页面URL:', window.location.href);
+        
+        // 自动检查localStorage中已有数据
+        window.addEventListener('load', function() {
+            try {
+                const existing = JSON.parse(localStorage.getItem('ai_agent_hub_leads') || '[]');
+                if (existing.length > 0) {
+                    console.log('已有意向记录:', existing.length, '条');
+                }
+            } catch (err) {
+                // 忽略错误
+            }
+        });
+    </script>
+</body>
+</html>
